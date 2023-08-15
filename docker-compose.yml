@@ -1,0 +1,18 @@
+version: '3'
+services:
+  myapp:
+    image: tiangolo/meinheld-gunicorn-flask
+    container_name: footyapp-portainer
+    networks:
+      br0:
+        ipv4_address: 192.168.0.233
+    ports:
+      - "80:80"
+    volumes:
+      - /mnt/user/share/docker/footyapp/tokens/:/tokens
+networks:
+  br0:
+    driver: custom
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
