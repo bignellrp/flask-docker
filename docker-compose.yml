@@ -1,7 +1,8 @@
 version: '3'
 services:
   myapp:
-    image: tiangolo/meinheld-gunicorn-flask
+    build:
+      context: .
     container_name: footyapp-portainer
     networks:
       br0:
@@ -13,7 +14,6 @@ services:
       - PYTHONUNBUFFERED=1
     volumes:
       - /mnt/user/share/docker/footyapp/tokens/:/tokens
-    command: ["echo", "Container is up and running!"]
 networks:
   br0:
     external: true
