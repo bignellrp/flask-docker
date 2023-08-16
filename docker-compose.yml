@@ -4,7 +4,7 @@ services:
     image: tiangolo/meinheld-gunicorn-flask
     container_name: footyapp-portainer
     networks:
-      my_macvlan:
+      lan_macvlan:
         ipv4_address: 192.168.0.233
     ports:
       - "80:80"
@@ -15,11 +15,6 @@ services:
       - /mnt/user/share/docker/footyapp/tokens/:/tokens
     command: ["echo", "Container is up and running!"]
 networks:
-  my_macvlan:
-    driver: macvlan
-    driver_opts:
-      parent: br0
-    ipam:
-      config:
-        - subnet: 192.168.0.0/24
-          gateway: 192.168.0.1
+  lan_macvlan:
+    external: true
+    name: lan_macvlan
