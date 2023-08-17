@@ -7,9 +7,6 @@ WORKDIR /app
 # Clone the conf files into the docker container
 RUN git clone --branch preprod --single-branch https://github.com/bignellrp/footyapp.git /app
 
-# Copy the app config into the docker container
-COPY gunicorn_conf.py /app/gunicorn_conf.py
-
 # Install dependencies
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
