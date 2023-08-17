@@ -1,5 +1,5 @@
 # Use a base image
-FROM python:3.8-slim
+FROM python:3.9
 
 # Set working directory
 WORKDIR /app
@@ -7,11 +7,11 @@ WORKDIR /app
 # Clone the conf files into the docker container
 RUN git clone --branch preprod --single-branch https://github.com/bignellrp/footyapp.git /app
 
-# Copy requirements file
-COPY requirements.txt .
+# Copy the app config into the docker container
+COPY gunicorn_conf.py /app/gunicorn_conf.py
 
 # Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # Set environment variables
 ENV WEB_CONCURRENCY=1
